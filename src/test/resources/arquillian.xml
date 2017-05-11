@@ -4,35 +4,15 @@
             xsi:schemaLocation="http://jboss.org/schema/arquillian
   http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-    <extension qualifier="docker">
-        <property name="serverVersion">1.28</property>
-        <property name="serverUri">http://localhost:2375</property>
-        <property name="definitionFormat">CUBE</property>
-        <property name="dockerContainers">
-            tomcat:
-                image: tutum/tomcat:7.0
-                killContainer: true
-                exposedPorts: [8089/tcp, 8080/tcp]
-                await:
-                    strategy: polling
-                env: [TOMCAT_PASS=mypass, JAVA_OPTS=-Dcom.sun.management.jmxremote.port=8089 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false]
-                portBindings: [8089/tcp, 8080/tcp]
-            arquillian-cube-tests:
-                image: thiagogarciaalves/arquillian-cube-tests
-                killContainer: true
-                await:
-                    strategy: polling
-                portBindings: []
-        </property>
+    <extension qualifier="cube">
+        <property name="connectionMode">STARTORCONNECTANDLEAVE</property>
     </extension>
 
-    <container qualifier="tomcat" default="true">
-        <configuration>
-            <property name="host">localhost</property>
-            <property name="httpPort">8080</property>
-            <property name="user">admin</property>
-            <property name="pass">mypass</property>
-        </configuration>
-    </container>
+    <extension qualifier="docker">
+        <property name="dockerContainersFile">docker-compose.yml</property>
+        <property name="serverVersion">1.12</property>
+        <property name="serverUri">unix:///var/run/docker.sock</property>
+        <property name="tlsVerify">false</property>
+    </extension>
 
 </arquillian>

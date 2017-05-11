@@ -22,8 +22,13 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
-      <artifactId>arquillian-junit-container</artifactId>
+      <artifactId>arquillian-junit-standalone</artifactId>
       <version>1.1.13.Final</version>
       <scope>test</scope>
     </dependency>
@@ -31,12 +36,6 @@
       <groupId>org.arquillian.cube</groupId>
       <artifactId>arquillian-cube-docker</artifactId>
       <version>1.2.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.arquillian.container</groupId>
-      <artifactId>arquillian-tomcat-remote-7</artifactId>
-      <version>1.0.0.CR7</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
